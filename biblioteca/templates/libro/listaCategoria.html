@@ -1,0 +1,32 @@
+<h1>lista</h1>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de libros</title>
+</head>
+<body>
+    <!-- <p>
+        <form method="GET">{% csrf_token %}
+            <input type="text" name="kword" id="kword" placeholder="Ingrese nombre Libro">
+            <input type="date" name="fecha1" id="fecha1" placeholder="ingrese primera fecha">
+            <input type="date" name="fecha2" id="fecha2" placeholder="ingrese segunda fecha">
+
+            <button type="submit">Consultar</button>
+
+        </form>
+    </p> -->
+
+    <h1>Listado de libros</h1>
+
+    <ul>
+        {% for libro in listaLibros %}
+            <li>{{ libro.titulo }} {{ libro.fechaLanzamiento }} - {{ libro.categoria.nombre }}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

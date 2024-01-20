@@ -1,0 +1,11 @@
+<h1>Hola mundo</h1>
+
+
+<p>{{object.titulo}}</p>
+<p>{{object.categoria}}</p>
+<p>{{object.fechaLanzamiento}}</p>
+<p>Autores:
+    {% for autor in object.autores.all %}
+      {{ autor.nombre }} {{ autor.apellidos }}{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+</p>
