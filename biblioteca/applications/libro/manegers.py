@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q, Count
 
 class LibroManager(models.Manager):
     #este es el manager para el modelo autor 
@@ -33,6 +34,14 @@ class CategoriaManager (models.Manager):
         return self.filter(
             categoriaLibro__autores__id = autor
         ).distinct()
+    
+
+    # con esta funcion me retorna la cantidad de libros que hay por categoria 
+    def listarCategoria (self):
+        resultado = self.annotate(
+            numLibros = Count('categoriaLibro')
+        )
+        return resultado
 
 
     

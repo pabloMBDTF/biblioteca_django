@@ -54,4 +54,4 @@ class Prestamo (models.Model):
     objects = LectorManager()
 
     def __str__ (self):
-        return self.lector.nombre + ' ' + self.libro.titulo
+        return self.lector.nombre + ' - ' + self.libro.titulo
