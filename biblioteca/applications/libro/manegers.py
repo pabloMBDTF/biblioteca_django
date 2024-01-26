@@ -27,6 +27,14 @@ class LibroManager(models.Manager):
         libro.autores.add(autor)
         return libro
     
+    def librosNumPrestamo(self):
+        resultado = self.aggregate (
+            numPrestamo = Count(
+                'libroPrestamo'
+            )
+        )
+        return resultado
+    
 
 class CategoriaManager (models.Manager):
 
@@ -37,11 +45,15 @@ class CategoriaManager (models.Manager):
     
 
     # con esta funcion me retorna la cantidad de libros que hay por categoria 
+    # y retorna un diccionario 
     def listarCategoria (self):
         resultado = self.annotate(
             numLibros = Count('categoriaLibro')
         )
         return resultado
+    
+
+
 
 
     

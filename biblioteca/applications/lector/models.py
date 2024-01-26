@@ -1,7 +1,7 @@
 from django.db import models
 
 from applications.libro.models import Libro
-from .managers import LectorManager
+from .managers import LectorManager, PrestamoManager
  
 
 # Create your models here.
@@ -34,12 +34,16 @@ class Lector (models.Model):
 class Prestamo (models.Model):
     lector = models.ForeignKey(
         Lector,
-        on_delete = models.CASCADE
+        on_delete = models.CASCADE,
+        related_name = 'libroPrestamo'
+
     )
 
     libro = models.ForeignKey(
         Libro,
-        on_delete = models.CASCADE
+        on_delete = models.CASCADE,
+        # entonces recuerda que este related name unicamente lo podras usar en las funciones del manager de Libro
+        related_name = 'libroPrestamo'
     )
 
     fechaPrestamo = models.DateField()
@@ -51,7 +55,7 @@ class Prestamo (models.Model):
 
     devuelto = models.BooleanField()
 
-    objects = LectorManager()
+    objects = PrestamoManager()
 
     def __str__ (self):
         return self.lector.nombre + ' - ' + self.libro.titulo
