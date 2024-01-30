@@ -46,6 +46,12 @@ class Libro (models.Model):
 
     objects = LibroManager()
 
+    class Meta:
+        # como quiero que aparesca el numbre en pluaral
+        verbose_name_plural = 'Libros'
+        # por que parametros quiero que se ordene en el administrador
+        ordering = ['titulo', 'fechaLanzamiento']
+
     def __str__(self):
         return str(self.id) + ' - ' + self.titulo
 

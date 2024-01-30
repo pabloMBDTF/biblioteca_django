@@ -29,12 +29,17 @@ class PrestamoManager(models.Manager):
     #funcion para saber cuantas veces se a prestado un libro 
 
     def numLibrosPrestado(self):
-        resultado = self.annotate(
+        # si no se pusiera el values entonces si se contarian los libros pero en base a los prestamos 
+        # entonces si hay dos prestamos con el mismo libro, se contaria como un libro nuevo esto ya que 
+        # se esta contando en base al id de los prestamo, y el id de cada prestamo es distinto 
+        resultado = self.values(
+            'libro'
+        ).annotate(
             numPrestado = Count('libro')
         ) 
 
         for r in resultado:
             print("===============")
-            print(r, r.numPrestado)
+            print(r, r['numPrestado'])
         return resultado
             
