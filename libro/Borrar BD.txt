@@ -1,0 +1,7 @@
+Como borrar una base de datos 
+
+
+-- IMPORTANTE ---> para hacer una copia de seguridad de la base de datos, se debe de situar en la carpeta donde estara la copia y ejecutar el siguiente comando:
+
+
+pg_dump -U usuario -d dbbiblioteca -f copia_biblioteca.sql

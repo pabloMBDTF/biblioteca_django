@@ -6,7 +6,7 @@ from django.db import models
 from .managers import AutorManager
 
 
-class Autor(models.Model):
+class Persona(models.Model):
     nombre = models.CharField(
         max_length = 50
     )
@@ -17,9 +17,18 @@ class Autor(models.Model):
         max_length = 35
     )
     edad = models.PositiveBigIntegerField(
-
+        default = 0
     )
-    objects = AutorManager()
 
     def __str__ (self):
         return str(self.id) + ' - ' + self.nombre + " " + self.apellidos
+    
+    class Meta:
+        abstract = True
+
+
+class Autor(Persona):
+    
+    objects = AutorManager()
+
+    
