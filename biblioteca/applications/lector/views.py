@@ -1,3 +1,4 @@
+from datetime import date
 from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render
@@ -27,4 +28,12 @@ class RegistrarPrestamo(FormView):
     success_url = '.'
 
     def form_valid(self, form):
+
+        Prestamo.objects.create(
+            lector = form.cleaned_data['lector'],
+            libro = form.cleaned_data['libro'],
+            fechaPrestamo = date.today(),
+            devuelto = False
+
+        )
         return super(RegistrarPrestamo, self).form_valid(form)
