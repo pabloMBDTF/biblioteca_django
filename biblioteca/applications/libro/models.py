@@ -44,6 +44,8 @@ class Libro (models.Model):
 
     )
 
+    stok = models.PositiveIntegerField(default = 0)
+
     objects = LibroManager()
 
     class Meta:
